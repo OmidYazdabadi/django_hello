@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexora AI helpt bedrijven slimmer werken met moderne AI-oplossingen, robotica en intelligente automatisering.">
+    <title>Nexora AI | Slimmer werken met AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --ink: #13233f;
+            --muted: #647084;
+            --paper: #eef3f7;
+            --cream: #ffffff;
+            --lime: #65e6c1;
+            --coral: #ff8066;
+            --line: rgba(19, 35, 63, .14);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--paper); font-family: 'Vazirmatn', Tahoma, sans-serif; }
+        a { color: inherit; text-decoration: none; }
+        .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+        .topbar { display: flex; align-items: center; justify-content: space-between; padding: 25px 0; }
+        .brand { display: flex; align-items: center; gap: 10px; font-size: 1.35rem; font-weight: 900; letter-spacing: -.04em; }
+        .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: var(--lime); font-size: .95rem; }
+        .nav-links { display: flex; gap: 30px; color: var(--muted); font-size: .9rem; }
+        .nav-links a:hover { color: var(--ink); }
+        .menu-button { display: none; border: 0; background: none; color: var(--ink); font: inherit; font-size: 1.5rem; cursor: pointer; }
+        .nav-cta, .hero-cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+        .nav-cta { padding: 11px 20px; border: 1px solid var(--ink); font-size: .83rem; }
+        .nav-cta:hover, .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(23, 35, 31, .15); }
+        .service-toolbar { display: flex; gap: 12px; padding: 0 0 18px; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--lime) transparent; }
+        .toolbar-card { position: relative; flex: 1 0 205px; min-height: 94px; display: flex; align-items: end; overflow: hidden; padding: 16px; border-radius: 14px; color: var(--cream); background-position: center; background-size: cover; }
+        .toolbar-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(19, 35, 63, .9), rgba(19, 35, 63, .1)); transition: background .2s; }
+        .toolbar-card:hover::before { background: linear-gradient(0deg, rgba(19, 35, 63, .72), rgba(101, 230, 193, .24)); }
+        .toolbar-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80'); }
+        .toolbar-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=600&q=80'); }
+        .toolbar-card:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80'); }
+        .toolbar-card:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80'); }
+        .toolbar-card span { position: relative; z-index: 1; font-size: .82rem; font-weight: 800; }
+        .hero { display: grid; grid-template-columns: 1.12fr .88fr; gap: 55px; align-items: center; min-height: 650px; padding: 66px 0 100px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--coral); font-size: .78rem; font-weight: 800; letter-spacing: .04em; }
+        .eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+        h1 { max-width: 690px; margin: 18px 0 24px; font-size: clamp(3.2rem, 7vw, 6.3rem); line-height: 1.05; letter-spacing: -.08em; }
+        h1 span { color: var(--coral); }
+        .hero-copy { max-width: 480px; color: var(--muted); font-size: 1.08rem; line-height: 2; }
+        .hero-actions { display: flex; align-items: center; gap: 20px; margin-top: 33px; }
+        .hero-cta { padding: 15px 25px; color: var(--ink); background: var(--lime); }
+        .text-link { border-bottom: 1px solid var(--ink); padding-bottom: 4px; font-size: .9rem; font-weight: 700; }
+        .hero-art { position: relative; min-height: 445px; }
+        .art-panel { position: absolute; inset: 23px 0 0 18px; overflow: hidden; border-radius: 46% 46% 10px 10px; background: var(--ink) url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85') center/cover; }
+        .art-panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(255, 120, 95, .78), rgba(23, 35, 31, .42)); }
+        .art-panel::after { content: 'N'; position: absolute; right: 19%; top: 4%; color: var(--lime); font-size: 17rem; font-weight: 900; line-height: 1; transform: rotate(-14deg); opacity: .9; }
+        .art-note { position: absolute; z-index: 1; right: -14px; top: 8px; width: 130px; height: 130px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--ink); font-size: .8rem; font-weight: 800; text-align: center; transform: rotate(12deg); }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .stat { padding: 29px 22px; border-left: 1px solid var(--line); }
+        .stat:last-child { border-left: 0; }
+        .stat strong { display: block; margin-bottom: 6px; font-size: 2rem; letter-spacing: -.05em; }
+        .stat span { color: var(--muted); font-size: .84rem; }
+        .section { padding: 115px 0; }
+        .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 40px; }
+        .section h2 { margin: 0; font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.07em; line-height: 1.15; }
+        .section-intro { max-width: 350px; margin: 0; color: var(--muted); line-height: 1.9; }
+        .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .service { min-height: 285px; padding: 29px; border: 1px solid var(--line); background: var(--cream); transition: transform .2s, background .2s; }
+        .service:hover { transform: translateY(-7px); background: var(--lime); }
+        .service-number { color: var(--coral); font-weight: 800; }
+        .service h3 { margin: 65px 0 12px; font-size: 1.25rem; }
+        .service p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.9; }
+        .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .quote { padding: 27px; border: 1px solid var(--line); background: var(--cream); }
+        .quote-mark { color: var(--coral); font-size: 2.5rem; font-weight: 900; line-height: .8; }
+        .quote p { min-height: 105px; margin: 20px 0 25px; font-size: .95rem; line-height: 1.9; }
+        .quote-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 18px; }
+        .avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--lime); font-weight: 800; }
+        .quote-author strong, .quote-author span { display: block; }
+        .quote-author strong { font-size: .85rem; }
+        .quote-author span { color: var(--muted); font-size: .75rem; }
+        .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+        .price-card { position: relative; display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--line); background: var(--cream); }
+        .price-card.featured { background: var(--ink); color: var(--cream); transform: translateY(-10px); }
+        .price-card.featured .price-description, .price-card.featured .price-features { color: #a9b5ae; }
+        .price-card.featured .price-button { background: var(--lime); color: var(--ink); }
+        .price-badge { position: absolute; top: 18px; left: 20px; padding: 5px 11px; border-radius: 999px; background: var(--coral); color: var(--ink); font-size: .7rem; font-weight: 800; }
+        .price-card h3 { margin: 0 0 12px; font-size: 1.35rem; }
+        .price-description { min-height: 55px; margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.8; }
+        .price { margin: 25px 0; font-size: 2.2rem; font-weight: 900; letter-spacing: -.06em; }
+        .price small { color: var(--muted); font-size: .75rem; font-weight: 500; letter-spacing: 0; }
+        .price-features { flex: 1; margin: 0 0 25px; padding: 20px 0 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; line-height: 2.25; list-style: none; }
+        .price-features li::before { content: '✓'; margin-left: 8px; color: var(--coral); font-weight: 900; }
+        .price-button { display: flex; justify-content: center; padding: 13px 18px; border: 1px solid currentColor; border-radius: 999px; font-size: .82rem; font-weight: 800; }
+        .work-section { background: var(--ink); color: var(--cream); }
+        .work-section .section-intro { color: #a9b5ae; }
+        .world-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .world-card { position: relative; min-height: 310px; display: flex; align-items: end; overflow: hidden; padding: 26px; color: var(--cream); background-position: center; background-size: cover; }
+        .world-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(19, 35, 63, .9), rgba(19, 35, 63, .05) 75%); }
+        .world-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=85'); }
+        .world-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=900&q=85'); }
+        .world-card:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=85'); }
+        .world-card-content { position: relative; z-index: 1; }
+        .world-card small { color: var(--lime); font-weight: 800; }
+        .world-card h3 { margin: 9px 0 0; font-size: 1.5rem; }
+        .work-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; }
+        .project { position: relative; min-height: 380px; display: flex; flex-direction: column; justify-content: end; padding: 30px; overflow: hidden; background: var(--ink) url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=85') center/cover; color: var(--cream); }
+        .project::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(23, 35, 31, .92), rgba(23, 35, 31, .05) 75%); }
+        .project:nth-child(2) { min-height: 260px; background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=85'); }
+        .project:nth-child(3) { min-height: 260px; background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=85'); }
+        .project:first-child { grid-row: span 2; }
+        .project small, .project h3 { position: relative; z-index: 1; }
+        .project small { font-weight: 700; }
+        .project h3 { margin: 10px 0 0; font-size: 2rem; letter-spacing: -.06em; }
+        .contact { display: grid; grid-template-columns: 1fr .8fr; gap: 50px; align-items: end; }
+        .contact h2 { max-width: 600px; }
+        .contact-box { padding: 25px; border-right: 3px solid var(--coral); color: var(--muted); line-height: 2; }
+        .contact-box a { color: var(--ink); font-weight: 800; }
+        footer { padding: 70px 0 25px; background: var(--ink); color: var(--cream); }
+        .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: 40px; padding-bottom: 55px; }
+        .footer-brand { align-self: start; }
+        .footer-brand .brand { color: var(--cream); }
+        .footer-description { max-width: 255px; margin: 20px 0 0; color: #aeb9c8; font-size: .85rem; line-height: 1.9; }
+        .footer-column h3 { margin: 4px 0 19px; color: var(--lime); font-size: .82rem; }
+        .footer-column a { display: block; width: fit-content; margin-bottom: 12px; color: #dce4ed; font-size: .82rem; }
+        .footer-column a:hover { color: var(--lime); }
+        .footer-contact { color: #aeb9c8; font-size: .82rem; line-height: 2; }
+        .footer-contact a { color: var(--cream); font-size: 1rem; font-weight: 700; }
+        .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .15); color: #aeb9c8; font-size: .76rem; }
+        @media (max-width: 760px) {
+            .shell { width: min(100% - 32px, 560px); }
+            .nav-links, .nav-cta { display: none; }
+            .menu-button { display: block; }
+            .topbar.open { flex-wrap: wrap; }
+            .topbar.open .nav-links { order: 3; display: flex; width: 100%; flex-direction: column; gap: 17px; padding: 22px 0 8px; }
+            .hero { grid-template-columns: 1fr; gap: 30px; min-height: auto; padding: 55px 0 75px; }
+            h1 { font-size: clamp(3rem, 16vw, 5rem); }
+            .hero-art { min-height: 330px; }
+            .stats, .services, .work-grid, .contact { grid-template-columns: 1fr; }
+            .testimonials, .pricing { grid-template-columns: 1fr; }
+            .world-grid { grid-template-columns: 1fr; }
+            .stat { border-left: 0; border-bottom: 1px solid var(--line); }
+            .stat:last-child { border-bottom: 0; }
+            .section { padding: 75px 0; }
+            .section-head { display: block; }
+            .section-intro { margin-top: 20px; }
+            .project:first-child { grid-row: auto; }
+            .project, .project:nth-child(2), .project:nth-child(3) { min-height: 260px; }
+            .price-card.featured { transform: none; }
+            .contact-box { margin-top: 15px; }
+            .footer-main { grid-template-columns: 1fr 1fr; gap: 35px 20px; }
+            .footer-brand { grid-column: 1 / -1; }
+            .footer-bottom { display: block; }
+            .footer-bottom span { display: block; margin-bottom: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="shell topbar" id="topbar">
+        <a class="brand" href="#top"><span class="brand-mark">N</span> Nexora AI</a>
+        <nav class="nav-links" aria-label="Hoofdnavigatie">
+            <a href="#services">AI-oplossingen</a>
+            <a href="#work">Toepassingen</a>
+            <a href="#pricing">Support</a>
+            <a href="#about">Onze aanpak</a>
+        </nav>
+        <a class="nav-cta" href="#contact">Bespreek jouw uitdaging <span aria-hidden="true">→</span></a>
+        <button class="menu-button" type="button" aria-label="Menu openen" aria-expanded="false">☰</button>
+    </header>
+
+    <nav class="shell service-toolbar" aria-label="AI-diensten">
+        <a class="toolbar-card" href="#services"><span>AI-assistenten</span></a>
+        <a class="toolbar-card" href="#world-title"><span>Robotica</span></a>
+        <a class="toolbar-card" href="#world-title"><span>Drones & data</span></a>
+        <a class="toolbar-card" href="#world-title"><span>Smart mobility</span></a>
+    </nav>
+
+    <main id="top">
+        <section class="shell hero">
+            <div>
+                <div class="eyebrow">Praktische AI voor jouw dagelijkse werk</div>
+                <h1>Laat AI het werk doen dat <span>jou vertraagt.</span></h1>
+                <p class="hero-copy">Nexora AI helpt teams slimmer werken. Van een persoonlijke AI-assistent tot volledige automatisering: wij maken moderne technologie begrijpelijk en direct bruikbaar.</p>
+                <div class="hero-actions">
+                    <a class="hero-cta" href="#contact">Ontdek wat mogelijk is <span aria-hidden="true">→</span></a>
+                    <a class="text-link" href="#services">Bekijk onze oplossingen</a>
+                </div>
+            </div>
+            <div class="hero-art" aria-label="Grafische illustratie van Nexora AI" role="img">
+                <div class="art-panel"></div>
+                <div class="art-note">Slimmer<br>werken</div>
+            </div>
+        </section>
+
+        <section class="shell stats" id="about">
+            <div class="stat"><strong>24/7</strong><span>Beschikbare assistentie</span></div>
+            <div class="stat"><strong>10x</strong><span>Minder handmatig werk</span></div>
+            <div class="stat"><strong>100%</strong><span>Afgestemd op jouw team</span></div>
+        </section>
+
+        <section class="shell section" id="services">
+            <div class="section-head">
+                <h2>AI die werkt<br>voor jouw bedrijf.</h2>
+                <p class="section-intro">Geen ingewikkelde beloftes, maar concrete oplossingen die tijd besparen, kwaliteit verhogen en ruimte geven voor belangrijker werk.</p>
+            </div>
+            <div class="services">
+                <article class="service"><span class="service-number">01 / 03</span><h3>AI-assistenten</h3><p>Een slimme assistent die informatie vindt, vragen beantwoordt en jouw team ondersteunt.</p></article>
+                <article class="service"><span class="service-number">02 / 03</span><h3>Werk automatiseren</h3><p>Laat terugkerende taken, rapportages en processen automatisch en betrouwbaar uitvoeren.</p></article>
+                <article class="service"><span class="service-number">03 / 03</span><h3>AI-strategie</h3><p>Een helder plan om AI veilig, verantwoord en met meetbaar resultaat in te zetten.</p></article>
+            </div>
+        </section>
+
+        <section class="work-section" id="work">
+            <div class="shell section">
+                <div class="section-head"><h2>Wat AI voor<br>jou kan doen.</h2><p class="section-intro">Van klantenservice tot kenniswerk: we zoeken samen de plekken waar AI direct waarde toevoegt.</p></div>
+                <div class="work-grid">
+                    <article class="project"><small>Kennis & klantenservice</small><h3>Antwoorden die altijd klaarstaan.</h3></article>
+                    <article class="project"><small>Content & marketing</small><h3>Meer maken, minder zoeken.</h3></article>
+                    <article class="project"><small>Operatie & administratie</small><h3>Rust in je processen.</h3></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="shell section" aria-labelledby="world-title">
+            <div class="section-head">
+                <h2 id="world-title">AI die de<br>wereld beweegt.</h2>
+                <p class="section-intro">Van slimme machines tot autonome voertuigen: technologie wordt pas waardevol wanneer ze de echte wereld beter maakt.</p>
+            </div>
+            <div class="world-grid">
+                <article class="world-card"><div class="world-card-content"><small>Robotica</small><h3>Machines die meedenken.</h3></div></article>
+                <article class="world-card"><div class="world-card-content"><small>Drones & data</small><h3>Een nieuw perspectief.</h3></div></article>
+                <article class="world-card"><div class="world-card-content"><small>Smart mobility</small><h3>Onderweg naar morgen.</h3></div></article>
+            </div>
+        </section>
+
+        <section class="shell section" aria-labelledby="reviews-title">
+            <div class="section-head">
+                <h2 id="reviews-title">Ervaringen van<br>onze klanten.</h2>
+                <p class="section-intro">Geen grote woorden, maar teams die elke week tijd terugwinnen met een oplossing die bij hen past.</p>
+            </div>
+            <div class="testimonials">
+                <article class="quote">
+                    <div class="quote-mark">“</div>
+                    <p>Nexora liet ons zien waar AI direct verschil maakt. Binnen een maand waren onze terugkerende taken veel beter georganiseerd.</p>
+                    <div class="quote-author"><span class="avatar">LK</span><div><strong>Laura de Koning</strong><span>Operations manager</span></div></div>
+                </article>
+                <article class="quote">
+                    <div class="quote-mark">“</div>
+                    <p>Onze assistent geeft klanten nu sneller antwoord en ons team houdt meer tijd over voor persoonlijk contact.</p>
+                    <div class="quote-author"><span class="avatar">MV</span><div><strong>Mark van Dijk</strong><span>Directeur, Rivier & Co.</span></div></div>
+                </article>
+                <article class="quote">
+                    <div class="quote-mark">“</div>
+                    <p>Geen ingewikkeld technisch verhaal, maar duidelijke stappen en resultaat. Dat is precies wat we nodig hadden.</p>
+                    <div class="quote-author"><span class="avatar">SB</span><div><strong>Sophie Bakker</strong><span>Founder, Studio Noord</span></div></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="shell section" id="pricing" aria-labelledby="pricing-title">
+            <div class="section-head">
+                <h2 id="pricing-title">Maandelijkse<br>AI-support.</h2>
+                <p class="section-intro">Kies de ondersteuning die past bij jouw team. Je kunt iedere maand uitbreiden of aanpassen.</p>
+            </div>
+            <div class="pricing">
+                <article class="price-card">
+                    <h3>Start</h3>
+                    <p class="price-description">Voor teams die begeleiding zoeken bij hun eerste AI-stappen.</p>
+                    <div class="price">€ 149 <small>/ maand</small></div>
+                    <ul class="price-features"><li>Maandelijkse strategiesessie</li><li>Advies over AI-tools</li><li>Reactie binnen 2 werkdagen</li></ul>
+                    <a class="price-button" href="#contact">Kies Start</a>
+                </article>
+                <article class="price-card featured">
+                    <span class="price-badge">Meest gekozen</span>
+                    <h3>Groei</h3>
+                    <p class="price-description">Voor bedrijven die AI actief willen inzetten en verbeteren.</p>
+                    <div class="price">€ 399 <small>/ maand</small></div>
+                    <ul class="price-features"><li>Twee sessies per maand</li><li>Optimalisatie van workflows</li><li>Prioriteit bij vragen</li></ul>
+                    <a class="price-button" href="#contact">Kies Groei</a>
+                </article>
+                <article class="price-card">
+                    <h3>Partner</h3>
+                    <p class="price-description">Voor teams die een doorlopende AI-partner naast zich willen.</p>
+                    <div class="price">€ 799 <small>/ maand</small></div>
+                    <ul class="price-features"><li>Wekelijkse begeleiding</li><li>Beheer en verbetering</li><li>Snelle ondersteuning</li></ul>
+                    <a class="price-button" href="#contact">Kies Partner</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="shell section contact" id="contact">
+            <h2>Heb je een uitdaging?<br><span style="color: var(--coral)">Laten we hem slimmer maken.</span></h2>
+            <div class="contact-box">Vertel ons waar je tijd verliest. We laten zien hoe AI kan helpen.<br><a href="mailto:hello@nexora.ai">hello@nexora.ai →</a></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="shell footer-main">
+            <div class="footer-brand">
+                <a class="brand" href="#top"><span class="brand-mark">N</span> Nexora AI</a>
+                <p class="footer-description">Praktische AI-oplossingen voor teams die slimmer willen werken, groeien en tijd terugwinnen.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Navigatie</h3>
+                <a href="#services">AI-oplossingen</a>
+                <a href="#work">Toepassingen</a>
+                <a href="#pricing">Support</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Diensten</h3>
+                <a href="#services">AI-assistenten</a>
+                <a href="#services">Werk automatiseren</a>
+                <a href="#services">AI-strategie</a>
+                <a href="#pricing">Maandelijkse support</a>
+            </div>
+            <div class="footer-column footer-contact">
+                <h3>Kom in contact</h3>
+                <span>Plan een vrijblijvend gesprek.</span>
+                <a href="mailto:hello@nexora.ai">hello@nexora.ai</a>
+                <a href="tel:+31201234567">+31 (0)20 123 45 67</a>
+            </div>
+        </div>
+        <div class="shell footer-bottom">
+            <span>© <span id="year"></span> Nexora AI. Alle rechten voorbehouden.</span>
+            <span>Gebouwd voor slimmer werken · Amsterdam</span>
+        </div>
+    </footer>
+    <script>
+        const topbar = document.querySelector('#topbar');
+        const menuButton = document.querySelector('.menu-button');
+        menuButton.addEventListener('click', () => {
+            const isOpen = topbar.classList.toggle('open');
+            menuButton.setAttribute('aria-expanded', isOpen);
+        });
+        document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
