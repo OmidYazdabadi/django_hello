@@ -1,0 +1,26 @@
+{% extends 'members/base.html' %}
+
+{% block title %}Opgeslagen | Ledenbeheer{% endblock %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+	<div>
+		<p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> LEDENBEHEER / BEVESTIGING</p>
+		<h1 id="page-title">Registratie afgerond</h1>
+		<p class="page-subtitle">De gegevens zijn opgeslagen.</p>
+	</div>
+	<div class="intro-stamp" aria-hidden="true"><strong>03</strong><span>GEREED</span></div>
+</section>
+
+<section class="success-panel" aria-labelledby="success-title" role="status">
+	<span class="success-mark" aria-hidden="true">OK</span>
+	<div>
+		<h2 id="success-title">Lid toegevoegd</h2>
+		<p>De nieuwe registratie staat in het ledenoverzicht.</p>
+		<div class="success-actions">
+			<a class="button button-primary" href="{% url 'member-list' %}">Bekijk ledenlijst</a>
+			<a class="button button-secondary" href="{% url 'member-create' %}"><span class="button-icon" aria-hidden="true">+</span> Nog een lid toevoegen</a>
+		</div>
+	</div>
+</section>
+{% endblock %}

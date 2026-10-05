@@ -1,0 +1,46 @@
+{% extends 'members/base.html' %}
+
+{% block title %}Nieuw lid | Ledenbeheer{% endblock %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+    <div>
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> LEDENBEHEER / REGISTRATIE</p>
+        <h1 id="page-title">Nieuw lid</h1>
+        <p class="page-subtitle">Voeg een lid toe aan het overzicht.</p>
+    </div>
+    <div class="intro-stamp" aria-hidden="true"><strong>02</strong><span>REGISTRATIE</span></div>
+</section>
+
+<section class="form-panel" aria-labelledby="form-title">
+    <div class="panel-heading">
+        <strong id="form-title">Lidgegevens</strong>
+        <p>Vul de gegevens in en sla de registratie op.</p>
+    </div>
+    <form class="member-form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="field-grid">
+            <div class="field{% if form.first_name.errors %} has-error{% endif %}">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {% for error in form.first_name.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+            <div class="field{% if form.last_name.errors %} has-error{% endif %}">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {% for error in form.last_name.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+            <div class="field field-phone{% if form.phone.errors %} has-error{% endif %}">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                {% for error in form.phone.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+        </div>
+        <div class="form-actions">
+            <a class="button button-secondary" href="{% url 'member-list' %}">Annuleren</a>
+            <button class="button button-primary" type="submit"><span class="button-icon" aria-hidden="true">+</span> Lid opslaan</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

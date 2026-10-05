@@ -15,12 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hello.urls')),
+    path('hello2/', include('hello2.urls')),
+    path('members/', include('members.urls')),
+    path('playground/', include('playground.urls')),
     # root naar hello
 ]
+urlpatterns += static(
+    '/hello2/',
+    document_root=settings.BASE_DIR / 'hello2' / 'templates',
+)
 
 
