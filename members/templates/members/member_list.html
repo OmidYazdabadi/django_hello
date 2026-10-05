@@ -1,0 +1,46 @@
+{% extends 'members/base.html' %}
+
+{% block title %}Leden | Ledenbeheer{% endblock %}
+
+{% block content %}
+<section class="page-intro" aria-labelledby="page-title">
+	<div>
+		<p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> LEDENBEHEER / OVERZICHT</p>
+		<h1 id="page-title">Leden</h1>
+		<p class="page-subtitle">Een helder overzicht van alle geregistreerde leden.</p>
+	</div>
+	<div class="intro-stamp" aria-hidden="true"><strong>01</strong><span>REGISTRATIE</span></div>
+</section>
+
+<section aria-labelledby="roster-title">
+	<div class="section-toolbar">
+		<div>
+			<p class="section-label">MEMBER DIRECTORY</p>
+			<h2 id="roster-title">Alle leden <span class="count">{{ members|length|stringformat:"02d" }}</span></h2>
+		</div>
+		<a class="button button-primary" href="{% url 'member-create' %}"><span class="button-icon" aria-hidden="true">+</span> Nieuw lid</a>
+	</div>
+	<div class="table-panel">
+		<div class="table-caption"><span>DATABASE / MEMBERS</span><span>{{ members|length }} LEDEN</span></div>
+		<div class="table-scroll">
+			<table>
+				<thead>
+					<tr><th scope="col">NAAM</th><th scope="col">TELEFOON</th><th scope="col">AANGEMELD</th><th scope="col">STATUS</th></tr>
+				</thead>
+				<tbody>
+					{% for member in members %}
+					<tr>
+						<td><div class="person-cell"><span class="avatar" aria-hidden="true">{{ member.first_name|first|upper }}</span><span>{{ member.first_name }} {{ member.last_name }}</span></div></td>
+						<td>{{ member.phone }}</td>
+						<td>{{ member.joined_date|date:"d M Y" }}</td>
+						<td><span class="status">Actief</span></td>
+					</tr>
+					{% empty %}
+					<tr><td class="empty-cell" colspan="4"><span class="empty-symbol" aria-hidden="true">+</span><strong>Nog geen leden</strong><span>Er staan nog geen leden in het overzicht.</span></td></tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+{% endblock %}
